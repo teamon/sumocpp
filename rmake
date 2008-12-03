@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+
+options = {}
+OptionParser.new do |o|
+  o.on("-p") {|v| options[:program] = v }
+  o.on("-m") {|v| options[:make] = v }
+  o.on("-r") {|v| options[:remove] = v}
+  o.on("-V") {|v| options[:verify] = v}
+end.parse!
+
+name = ARGV.first
+
+if options[:remove]
+  ["elf", "hex", "o"].each {|ext| `rm #{name}.#{ext}`}
+end
+
+if options[:make]
+  x = File.read('Makefile').sub(/PROGNAME=\w*/, "PROGNAME=#{name}")
+  File.open('Makefile', 'w') do |f|
+    f.puts x 
+  end
+  puts `make`
+end
+
+if options[:program]
+  puts `avrdude #{options[:verify] ? '-V ' : ''}-c stk500v2 -P avrdoper -p atmega32 -U flash:w:#{name}.hex`
+end
+
