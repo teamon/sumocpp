@@ -14,7 +14,14 @@ end.parse!
 name = ARGV.first
 
 if options[:remove]
-  ["elf", "hex", "o"].each {|ext| `rm #{name}.#{ext}`}
+  print "Removing..."
+  ["elf", "hex", "o"].each {|ext| 
+    Dir["**/*.#{ext}"].each {|f| 
+      print f + " "
+      File.delete(f)
+    }
+  }
+  puts "done."
 end
 
 if options[:make]
@@ -22,10 +29,12 @@ if options[:make]
   File.open('Makefile', 'w') do |f|
     f.puts x 
   end
-  puts `make`
+  make_output = `make 2>&1`
+  puts make_output
 end
-
-if options[:program]
+if make_output and make_output =~ /error/
+  puts "ERROR"
+elsif options[:program]
   puts `avrdude #{options[:verify] ? '-V ' : ''}-c stk500v2 -P avrdoper -p atmega32 -U flash:w:#{name}.hex`
 end
 

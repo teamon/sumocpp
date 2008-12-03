@@ -1,5 +1,5 @@
 PROGNAME=main
-CC=avr-gcc
+CC=avr-g++
 MMCU=atmega32
 OPT= -O2
 ARGS=$(OPT) -mmcu=$(MMCU)
@@ -10,7 +10,7 @@ all: $(HEX)
 $(HEX): $(PROGNAME).elf
 	avr-objcopy -O ihex $^ $@
 	
-$(PROGNAME).elf: $(PROGNAME).o lib/led.o lib/wait.o
+$(PROGNAME).elf: $(PROGNAME).o lib/led.o lib/wait.o lib/motor.o lib/switch.o
 	$(CC) $(ARGS) $^ -o $@	
 	
 $(PROGNAME).o: $(PROGNAME).cpp
@@ -19,8 +19,14 @@ $(PROGNAME).o: $(PROGNAME).cpp
 lib/led.o: lib/led.cpp lib/sumo.h
 	$(CC) $(ARGS) -c lib/led.cpp -o $@
 	
+lib/switch.o: lib/switch.cpp lib/sumo.h
+	$(CC) $(ARGS) -c lib/switch.cpp -o $@
+	
 lib/wait.o: lib/wait.cpp lib/sumo.h
 	$(CC) $(ARGS) -c lib/wait.cpp -o $@
+	
+lib/motor.o: lib/motor.cpp lib/sumo.h
+	$(CC) $(ARGS) -c lib/motor.cpp -o $@
 	
 clean:
 	rm -f *.o

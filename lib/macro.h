@@ -1,7 +1,6 @@
 #ifndef MACRO_H_
 #define MACRO_H_
 
-
 // Ustawia bit w bajcie
 #define setb(byte,bit) byte |= (1 << bit)
 
@@ -51,6 +50,4 @@
 #define led8_negate() cpl(LED_PORT,LED8_PIN)
 #define leds_negate() cpl(LEDS_PORT,LEDS_PIN)
 
-
-
-#endif /*MACRO_H_*/
+#endif

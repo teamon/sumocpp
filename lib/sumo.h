@@ -47,152 +47,49 @@
  */
 
 
-/**
- * Częstotliwość kwarcu
- */
+// Częstotliwość kwarcu
 #define F_CPU 7372800L
-
-/**
- * Prędkość transmisji po RSie
- */
+// Prędkość transmisji po RSie
 #define USART_SPEED 9600L
 
+// Opóźnienie pomiędzy przełączaniem kierunków ruchu silników
+// podawane w ms
+// Uwaga: musi być większe od 0
+#define MOTOR_DELAY 2
 
-/**
- * Port wyjścia PWM silnika 1
- */
+
+// Port wyjścia PWM silnika 1
 #define MOTOR1_PWM_PORT PORTD
-
-/**
- * Rejestr kierunku portu wyjścia PWM silnika 1
- */
+// Rejestr kierunku portu wyjścia PWM silnika 1
 #define MOTOR1_PWM_DDR DDRD
-
-/**
- * Linia portu wyjścia PWM silnika 1
- */
+// Linia portu wyjścia PWM silnika 1
 #define MOTOR1_PWM_PIN 4
-
-/** 
- * Negacja stanu aktywnego silnika 1
- * 0 - brak negacji
- * 1 - negacja
- */
-#define MOTOR1_PWM_NEGATE 1
-
-/**
- * Opóźnienie pomiędzy przełączaniem kierunków ruchu silnika 1
- * podawane w ms
- * Uwaga: musi być większe od 0
- */
-#define MOTOR1_DELAY 2
-
-/**
- * Maksymalna moc silnika 1 wyrażona w % 
- */
-#define MOTOR1_MAX_POWER 70
-
-/**
- * Domyślna moc silnika 1 wyrażona w % 
- */
-#define MOTOR1_DEFAULT_POWER 30
-
-/**
- * Port wyjścia kierunku silnika 1
- */
+// Port wyjścia kierunku silnika 1
 #define MOTOR1_DIR_PORT PORTD
-
-/**
- * Rejestr kierunku portu wyjścia kierunku silnika 1
- */
+// Rejestr kierunku portu wyjścia kierunku silnika 1
 #define MOTOR1_DIR_DDR DDRD
-
-/**
- * Linia portu wyjścia kierunku silnika 1
- */
+// Linia portu wyjścia kierunku silnika 1
 #define MOTOR1_DIR_PIN 7
 
-/** 
- * Negacja kierunku ruchu silnika 1
- * 0 - brak negacji
- * 1 - negacja
- */
-#define MOTOR1_DIR_NEGATE 0
 
-
-
-/**
- * Port wyjścia PWM silnika 2
- */
+// Port wyjścia PWM silnika 2
 #define MOTOR2_PWM_PORT PORTD
-
-/**
- * Rejestr kierunku portu wyjścia PWM silnika 2
- */
+// Rejestr kierunku portu wyjścia PWM silnika 2
 #define MOTOR2_PWM_DDR DDRD
-
-/**
- * Linia portu wyjścia PWM silnika 2
- * (musi być wyjście kanału PWM)
- */
+// Linia portu wyjścia PWM silnika 2
 #define MOTOR2_PWM_PIN 5
-
-/** 
- * Negacja stanu aktywnego silnika 2
- * 0 - brak negacji
- * 1 - negacja
- */
-#define MOTOR2_PWM_NEGATE 1
-
-/**
- * Opóźnienie pomiędzy przełączaniem kierunków ruchu silnika 2
- * podawane w ms
- * Uwaga: musi być większe od 0
- */
-#define MOTOR2_DELAY 2
-
-/**
- * Maksymalna moc silnika 2 wyrażona w % 
- */
-#define MOTOR2_MAX_POWER 70
-
-/**
- * Domyślna moc silnika 2 wyrażona w % 
- */
-#define MOTOR2_DEFAULT_POWER 30
-
-/**
- * Port wyjścia kierunku silnika 2
- */
+// Port wyjścia kierunku silnika 2
 #define MOTOR2_DIR_PORT PORTD
-
-/**
- * Rejestr kierunku portu wyjścia kierunku silnika 2
- */
+// Rejestr kierunku portu wyjścia kierunku silnika 2
 #define MOTOR2_DIR_DDR DDRD
-
-/**
- * Linia portu wyjścia kierunku silnika 2
- */
+// Linia portu wyjścia kierunku silnika 2
 #define MOTOR2_DIR_PIN 6
 
-/** 
- * Negacja kierunku ruchu silnika 2
- * 0 - brak negacji
- * 1 - negacja
- */
-#define MOTOR2_DIR_NEGATE 0
 
-
-
-/**
- * Port serwomechanozmu 1
- */
+// Port serwomechanozmu 1
 #define SERVO1_PORT PORTA
 
-/**
- * Rejestr kierunku portu serwomechanozmu 1
- */
+// Rejestr kierunku portu serwomechanozmu 1
 #define SERVO1_DDR DDRA
 
 /**
@@ -333,44 +230,22 @@
 
 
 
-/**
- * Port przycisku 1
- */
+// Port przycisku 1
 #define SWITCH1_PORT PORTD
-
-/**
- * Rejestr kierunku portu przycisku 1
- */
+// Rejestr kierunku portu przycisku 1
 #define SWITCH1_DDR PORTD
-
-/**
- * Rejestr wejściowy portu przycisku 1
- */
+// Rejestr wejściowy portu przycisku 1
 #define SWITCH1_PINPORT PIND
-
-/**
- * linia portu przycisku 1
- */
+// linia portu przycisku 1
 #define SWITCH1_PIN 2
 
-/**
- * Port przycisku 2
- */
+// Port przycisku 2
 #define SWITCH2_PORT PORTD
-
-/**
- * Rejestr kierunku portu przycisku 2
- */
+// Rejestr kierunku portu przycisku 2
 #define SWITCH2_DDR PORTD
-
-/**
- * Rejestr wejściowy portu przycisku 2
- */
+// Rejestr wejściowy portu przycisku 2
 #define SWITCH2_PINPORT PIND
-
-/**
- * linia portu przycisku 2
- */
+// linia portu przycisku 2
 #define SWITCH2_PIN 3
 
 
@@ -426,6 +301,26 @@
 #include <util/delay.h>
 #include <ctype.h>
 
+// Stałe obliczane
+
+// Wartość preskalera timera0
+#define T0_PRESCALER 256
+
+// Konfiguracja timera0
+#define T0_CONF _BV(CS02)
+
+// Wartość początkowa dla timera0 
+// używanego do sterowania serwomechanizmami
+#define TIMER0_BEGIN_VALUE (unsigned char) (255-((0.0005)*(F_CPU/T0_PRESCALER)))
+
+// Wartość preskalera dla PWM
+// 0x01 - preskaler=1
+// 0x02 - preskaler=8
+// 0x03 - preskaler=64
+// 0x04 - preskaler=256
+// 0x05 - preskaler=1024
+#define PWM_PRESCALLER_CONFIG 0x02
+
 // lib/led.cpp
 void led_init();
 void led_send(unsigned char value);
@@ -434,5 +329,14 @@ void led_send(unsigned char value);
 void wait_s(int s);
 void wait_ms(int ms);
 
+// lib/motor.cpp
+void motor_init();
+
+// lib/switch.cpp
+void switch_init();
+unsigned char switch1_pressed();
+unsigned char switch2_pressed();
+void wait_switch1();
+void wait_switch2();
 
 #endif
