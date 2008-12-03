@@ -7,6 +7,7 @@ public:
   Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin);
   void set_power(unsigned char power);
   void forward();
+  void backward();
   void stop();
 
 private:

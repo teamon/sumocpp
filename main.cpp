@@ -9,11 +9,25 @@ int main() {
   led_init();
   motor_init();
   switch_init();
-  
+  ground_init();
   
   leds_on();
   
-  wait_switch1();
+  while(!switch1_pressed()){
+    if(ground1_detected()) led1_on();
+    else led1_off();
+    
+    if(ground2_detected()) led2_on();
+    else led2_off();
+      
+    if(ground3_detected()) led3_on();
+    else led3_off();
+        
+    if(ground4_detected()) led4_on();
+    else led4_off();
+    
+    wait_ms(50);
+  }
   
   
   motor1.forward();
@@ -47,9 +61,6 @@ int main() {
   motor2.stop();
   wait_s(2);
   motor2.forward();
-  
-  
-  // led_send(OCR1A);
   
 	for(;;){
     leds_negate();
