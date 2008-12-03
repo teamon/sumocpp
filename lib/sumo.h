@@ -430,5 +430,9 @@
 void led_init();
 void led_send(unsigned char value);
 
+// lib/wait.cpp
+void wait_s(int s);
+void wait_ms(int ms);
+
 
 #endif

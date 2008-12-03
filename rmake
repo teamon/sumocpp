@@ -4,10 +4,11 @@ require "optparse"
 
 options = {}
 OptionParser.new do |o|
-  o.on("-p") {|v| options[:program] = v }
-  o.on("-m") {|v| options[:make] = v }
-  o.on("-r") {|v| options[:remove] = v}
-  o.on("-V") {|v| options[:verify] = v}
+  o.banner = "Usage: ./rmake [options] [name]"
+  o.on("-p", "Program flash") {|v| options[:program] = v }
+  o.on("-m", "Make") {|v| options[:make] = v }
+  o.on("-r", "Remove .elf, .hex, .o") {|v| options[:remove] = v}
+  o.on("-V", "Do not verify") {|v| options[:verify] = v}
 end.parse!
 
 name = ARGV.first

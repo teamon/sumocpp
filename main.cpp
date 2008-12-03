@@ -4,7 +4,9 @@ int main() {
   // init();
   led_init();
   leds_on();
+  
 	for(;;){
-    wait_ms(50);
+    led1_negate();
+    wait_ms(300);
 	}
 }
