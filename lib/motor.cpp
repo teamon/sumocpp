@@ -1,13 +1,9 @@
 #include "sumo.h"
 #include "motor.h"
 
-Motor::Motor(){
+Motor::Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin){
   power = 0;
   max_power = 50;
-}
-
-Motor::Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin){
-  Motor();
   REG = reg;
   DIR_PORT = port;
   DIR_PIN = pin;
@@ -15,16 +11,18 @@ Motor::Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin){
 
 void Motor::forward(){
   stop();
-  led_send(power);
-  *REG = 0;
-  
   wait_ms(2);
   clr(*DIR_PORT, DIR_PIN);
   wait_ms(2);
-  
   *REG = power;
-  // setb(MOTOR1_DIR_PORT, MOTOR1_DIR_PIN);
-  
+}
+
+void Motor::backward(){
+  stop();
+  wait_ms(2);
+  setb(*DIR_PORT, DIR_PIN);
+  wait_ms(2);
+  *REG = power;
 }
 
 void Motor::stop(){

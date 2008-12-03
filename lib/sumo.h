@@ -88,7 +88,6 @@
 
 // Port serwomechanozmu 1
 #define SERVO1_PORT PORTA
-
 // Rejestr kierunku portu serwomechanozmu 1
 #define SERVO1_DDR DDRA
 
@@ -197,37 +196,19 @@
 
 
 
-/**
- * Port czujników podłoża
- * (musi być port z wejściami analogowymi)
- */
+// Port czujników podłoża
+// (musi być port z wejściami analogowymi)
 #define GROUND_PORT PORTB
-
-/**
- * Rejestr kierunku portu czujników podłaża
- */
+// Rejestr kierunku portu czujników podłaża
 #define GROUND_DDR DDRB
-
-/**
- * Rejestr wejściowy portu czujników podłaża
- */
+// Rejestr wejściowy portu czujników podłaża
 #define GROUND_PINPORT PINB
 
-/**
- * Linie czujników podłoża
- */
+// Linie czujników podłoża
 #define GROUND1_PIN 0
 #define GROUND2_PIN 1
 #define GROUND3_PIN 2
 #define GROUND4_PIN 3
-
-/**
- * Negacja wartości zwracanej przez funkcje wykrywające podloże
- * 0 - brak negacji
- * 1 - negacja
- */
-#define GROUND_NEGATE 0
-
 
 
 // Port przycisku 1
@@ -249,36 +230,18 @@
 #define SWITCH2_PIN 3
 
 
-/**
- * Port specjalnej diody LED
- */
+// Port specjalnej diody LED
 #define LEDS_PORT PORTB
-
-/**
- * Rejestr kierunku portu specjalnej diody LED
- */
+// Rejestr kierunku portu specjalnej diody LED
 #define LEDS_DDR DDRB
-
-/**
- * Linia diody specjalnej
- */
+// Linia diody specjalnej
 #define LEDS_PIN 4
-
-
-
-/**
- * Port diagnostycznych diod LED
- */
+// Port diagnostycznych diod LED
 #define LED_PORT PORTC
-
-/**
- * Rejestr kierunku portu diagnostycznych diod LED
- */
+// Rejestr kierunku portu diagnostycznych diod LED
 #define LED_DDR DDRC
 
-/**
- * Linie poszczególnych diod
- */
+// Linie poszczególnych diod
 #define LED1_PIN 0
 #define LED2_PIN 1
 #define LED3_PIN 2
@@ -338,5 +301,12 @@ unsigned char switch1_pressed();
 unsigned char switch2_pressed();
 void wait_switch1();
 void wait_switch2();
+
+// lib/ground.cpp
+void ground_init();
+unsigned char ground1_detected();
+unsigned char ground2_detected();
+unsigned char ground3_detected();
+unsigned char ground4_detected();
 
 #endif
