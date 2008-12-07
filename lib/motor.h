@@ -5,9 +5,7 @@ class Motor
 {
 public:
   Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin);
-  void set_power(unsigned char power);
-  void forward();
-  void backward();
+  void set_power(char power);
   void stop();
 
 private:
@@ -18,5 +16,6 @@ private:
   unsigned char DIR_PIN;
   
 };
+
 
 #endif

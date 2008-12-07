@@ -26,6 +26,22 @@ void Queue::push(Move move)
 	tail = curr;
 }
 
+Move Queue::pull(int time)
+{
+  if(head) 
+  {
+    head->move.time -= time;
+    Move move = head->move;
+    if(move.time <= 0)
+    {
+      Item *tmp = head->next;
+      free(head);
+      head = tmp;
+    }
+    return move;
+  }
+}
+
 Move Queue::pull()
 {
   if(head) 

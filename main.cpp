@@ -1,8 +1,26 @@
 #include "lib/sumo.h"
 #include "lib/motor.h"
+#include "lib/queue.h"
 
 Motor motor1 = Motor(&OCR1A, &MOTOR1_DIR_PORT, MOTOR1_DIR_PIN);
 Motor motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
+
+Queue queue;
+
+void motors(Move move)
+{
+  motor1.set_power(move.m1);
+  motor2.set_power(move.m2);
+}
+
+void qpush(char m1, char m2, int time)
+{
+  Move m;
+  m.m1 = m1;
+  m.m2 = m2;
+  m.time = time;
+  queue.push(m);
+}
 
 int main() {
   // init();
@@ -13,8 +31,11 @@ int main() {
   dist_init();
   
   leds_on();
-  
+
   while(!switch1_pressed()){
+    if(ground_detected()) led5_on();
+    else led5_off();
+    
     if(ground1_detected()) led1_on();
     else led1_off();
     
@@ -26,45 +47,41 @@ int main() {
         
     if(ground4_detected()) led4_on();
     else led4_off();
-    
-    // wait_ms(50);
   }
   
-  
-  // motor1.forward();
-  // 
-  // motor1.set_power(10);
-  // motor1.forward();
-  // wait_s(2);
-  // motor1.set_power(20);
-  // motor1.forward();
-  // wait_s(2);
-  // motor1.set_power(30);
-  // motor1.forward();
-  // wait_s(2);
-  // motor1.stop();
-  // wait_s(2);
-  // motor1.forward();
-  
-  
-  // wait_s(4);
-  // motor2.forward();
-  // 
-  // motor2.set_power(10);
-  // motor2.forward();
-  // wait_s(2);
-  // motor2.set_power(20);
-  // motor2.forward();
-  // wait_s(2);
-  // motor2.set_power(30);
-  // motor2.forward();
-  // wait_s(2);
-  // motor2.stop();
-  // wait_s(2);
-  // motor2.forward();
+  qpush(30, 0, 5000);
+  qpush(-50, 0, 2000);
+  qpush(0, 0, 1000);
+  qpush(20, 0, 5000);
   
   for(;;){
-    leds_negate();
-    wait_ms(300);
+    // ucieczka
+    
+    if(ground_detected())
+    {
+      motor1.stop();
+      motor2.stop();
+      queue.clear();
+      
+      if(ground1_detected()) led1_on();
+      else led1_off();
+
+      if(ground2_detected()) led2_on();
+      else led2_off();
+
+      if(ground3_detected()) led3_on();
+      else led3_off();
+
+      if(ground4_detected()) led4_on();
+      else led4_off();
+    }
+    
+    
+    
+    
+    if(queue.head){
+      motors(queue.pull(10));
+    }
+    wait_ms(10);
   }
 }

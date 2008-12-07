@@ -4,7 +4,7 @@
 class Move
 {
   public:
-  int left, right;
+  int m1, m2, time;
 };
 
 class Queue
@@ -20,6 +20,7 @@ class Queue
     ~Queue();
     void push(Move move);
     void clear();
+    Move pull(int time);
     Move pull();
 };
 

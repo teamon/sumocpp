@@ -9,28 +9,15 @@ Motor::Motor(volatile uint16_t* reg, volatile uint8_t* port, unsigned char pin){
   DIR_PIN = pin;
 }
 
-void Motor::forward(){
-  stop();
-  wait_ms(2);
-  clr(*DIR_PORT, DIR_PIN);
-  wait_ms(2);
-  *REG = power;
-}
-
-void Motor::backward(){
-  stop();
-  wait_ms(2);
-  setb(*DIR_PORT, DIR_PIN);
-  wait_ms(2);
-  *REG = power;
-}
-
 void Motor::stop(){
   *REG = 0;
 }
 
-void Motor::set_power(unsigned char p){
-  power = p * 10;
+void Motor::set_power(char p){
+  *REG = abs(p) * 10;
+  
+  if(p > 0 && *DIR_PORT == 0x8C) clr(*DIR_PORT, DIR_PIN); // do przodu
+  else if(p < 0 && *DIR_PORT == 0xC) setb(*DIR_PORT, DIR_PIN); // do tylu
 }
 
 void motor_init() {
