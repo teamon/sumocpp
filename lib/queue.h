@@ -19,6 +19,7 @@ class Queue
     Queue();
     ~Queue();
     void push(Move move);
+    void push(char m1, char m2, int time);
     void clear();
     Move pull(int time);
     Move pull();

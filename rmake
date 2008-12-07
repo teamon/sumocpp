@@ -32,7 +32,7 @@ if options[:make]
   make_output = `make 2>&1`
   puts make_output
 end
-if make_output and make_output =~ /error/
+if make_output and make_output.downcase =~ /error/
   puts "ERROR"
 elsif options[:program]
   puts `avrdude #{options[:verify] ? '-V ' : ''}-c stk500v2 -P avrdoper -p atmega32 -U flash:w:#{name}.hex`

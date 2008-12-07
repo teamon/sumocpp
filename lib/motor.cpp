@@ -16,8 +16,12 @@ void Motor::stop(){
 void Motor::set_power(char p){
   *REG = abs(p) * 10;
   
-  if(p > 0 && *DIR_PORT == 0x8C) clr(*DIR_PORT, DIR_PIN); // do przodu
-  else if(p < 0 && *DIR_PORT == 0xC) setb(*DIR_PORT, DIR_PIN); // do tylu
+  // tu jest cos zjebane i nie moze byc tego drugiego warunku...
+  // if(p > 0 && power <= 0) clr(*DIR_PORT, DIR_PIN); // do przodu
+  if(p > 0) clr(*DIR_PORT, DIR_PIN); // do przodu
+  else if(p < 0 && power >= 0) setb(*DIR_PORT, DIR_PIN); // do tylu
+  
+  power = p;
 }
 
 void motor_init() {

@@ -307,7 +307,7 @@ void wait_switch2();
 
 // lib/ground.cpp
 void ground_init();
-unsigned char ground_detected();
+unsigned char ground();
 unsigned char ground1_detected();
 unsigned char ground2_detected();
 unsigned char ground3_detected();

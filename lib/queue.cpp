@@ -26,6 +26,15 @@ void Queue::push(Move move)
 	tail = curr;
 }
 
+void Queue::push(char m1, char m2, int time)
+{
+  Move m;
+  m.m1 = m1;
+  m.m2 = m2;
+  m.time = time;
+  push(m);
+}
+
 Move Queue::pull(int time)
 {
   if(head) 
