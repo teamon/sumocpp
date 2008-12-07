@@ -2,14 +2,14 @@
 
 /// Inicjalizacja czujników podłoża
 void ground_init() {
-	clr(GROUND_DDR, GROUND1_PIN);
-	clr(GROUND_DDR, GROUND2_PIN);
-	clr(GROUND_DDR, GROUND3_PIN);
-	clr(GROUND_DDR, GROUND4_PIN);
-	clr(GROUND_PORT, GROUND1_PIN);
-	clr(GROUND_PORT, GROUND2_PIN);
-	clr(GROUND_PORT, GROUND3_PIN);
-	clr(GROUND_PORT, GROUND4_PIN);
+  clr(GROUND_DDR, GROUND1_PIN);
+  clr(GROUND_DDR, GROUND2_PIN);
+  clr(GROUND_DDR, GROUND3_PIN);
+  clr(GROUND_DDR, GROUND4_PIN);
+  clr(GROUND_PORT, GROUND1_PIN);
+  clr(GROUND_PORT, GROUND2_PIN);
+  clr(GROUND_PORT, GROUND3_PIN);
+  clr(GROUND_PORT, GROUND4_PIN);
 }
 
 // Wykrywa białe podłoże (linię) pod czujnikiem 1

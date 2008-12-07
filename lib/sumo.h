@@ -5,44 +5,44 @@
  * Opis wyprowadzeń procesora
  * 
  * PORTA
- * 		0 - DIST1 - czujnik odległości
- * 		1 - DIST2 - czujnik odległości
- * 		2 - DIST3 - czujnik odległości
- * 		3 - DIST4 - czujnik odległości
- * 		4 - DIST5 - czujnik odległości
- * 		5 - DIST6 - czujnik odległości
- * 		6 - SERVO1 - wejście serwomechanizmu
- * 		7 - SERVO2 - wejście serwomechanizmu
+ *     0 - DIST1 - czujnik odległości
+ *     1 - DIST2 - czujnik odległości
+ *     2 - DIST3 - czujnik odległości
+ *     3 - DIST4 - czujnik odległości
+ *     4 - DIST5 - czujnik odległości
+ *     5 - DIST6 - czujnik odległości
+ *     6 - SERVO1 - wejście serwomechanizmu
+ *     7 - SERVO2 - wejście serwomechanizmu
  * 
  * PORTB
- * 		0 - GROUND1 - czujnik podłoża
- * 		1 - GROUND2 - czujnik podłoża
- * 		2 - GROUND3 - czujnik podłoża
- * 		3 - GROUND4 - czujnik podłoża
- * 		4 - LEDS - dioda świecąca
- * 		5 - MOSI - używany do programowania
- * 		6 - MISO - używany do programowania
- * 		7 - SCK - używany do programowania
+ *     0 - GROUND1 - czujnik podłoża
+ *     1 - GROUND2 - czujnik podłoża
+ *     2 - GROUND3 - czujnik podłoża
+ *     3 - GROUND4 - czujnik podłoża
+ *     4 - LEDS - dioda świecąca
+ *     5 - MOSI - używany do programowania
+ *     6 - MISO - używany do programowania
+ *     7 - SCK - używany do programowania
  * 
  * PORTC
- * 		0 - LED1 - dioda świecąca
- * 		1 - LED2 - dioda świecąca
- * 		2 - LED3 - dioda świecąca
- * 		3 - LED4 - dioda świecąca
- * 		4 - LED5 - dioda świecąca
- * 		5 - LED6 - dioda świecąca
- * 		6 - LED7/SERVO4 - dioda świecąca/wejście serwomechanizmu
- * 		7 - LED8/SERVO3 - dioda świecąca/wejście serwomechanizmu
+ *     0 - LED1 - dioda świecąca
+ *     1 - LED2 - dioda świecąca
+ *     2 - LED3 - dioda świecąca
+ *     3 - LED4 - dioda świecąca
+ *     4 - LED5 - dioda świecąca
+ *     5 - LED6 - dioda świecąca
+ *     6 - LED7/SERVO4 - dioda świecąca/wejście serwomechanizmu
+ *     7 - LED8/SERVO3 - dioda świecąca/wejście serwomechanizmu
  * 
  * PORTD
- * 		0 - RXD - RS232
- * 		1 - TXD - RS232
- * 		2 - SWITCH1 - przycisk
- * 		3 - SWITCH2 - przycisk
- * 		4 - M1_PWM - start/stop silnika
- * 		5 - M2_PWM - start/stop silnika
- * 		6 - M1_DIR - kierunek obrotów silnika
- * 		7 - M2_DIR - kierunek obrotów silnika
+ *     0 - RXD - RS232
+ *     1 - TXD - RS232
+ *     2 - SWITCH1 - przycisk
+ *     3 - SWITCH2 - przycisk
+ *     4 - M1_PWM - start/stop silnika
+ *     5 - M2_PWM - start/stop silnika
+ *     6 - M1_DIR - kierunek obrotów silnika
+ *     7 - M2_DIR - kierunek obrotów silnika
  * 
  */
 
@@ -263,6 +263,7 @@
 #include <avr/eeprom.h>
 #include <util/delay.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 // Stałe obliczane
 
@@ -308,5 +309,14 @@ unsigned char ground1_detected();
 unsigned char ground2_detected();
 unsigned char ground3_detected();
 unsigned char ground4_detected();
+
+// lib/dist.cpp
+void dist_init();
+inline unsigned char dist1_value();
+inline unsigned char dist2_value();
+inline unsigned char dist3_value();
+inline unsigned char dist4_value();
+inline unsigned char dist5_value();
+inline unsigned char dist6_value();
 
 #endif

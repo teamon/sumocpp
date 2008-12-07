@@ -10,6 +10,7 @@ int main() {
   motor_init();
   switch_init();
   ground_init();
+  dist_init();
   
   leds_on();
   
@@ -26,44 +27,44 @@ int main() {
     if(ground4_detected()) led4_on();
     else led4_off();
     
-    wait_ms(50);
+    // wait_ms(50);
   }
   
   
-  motor1.forward();
+  // motor1.forward();
+  // 
+  // motor1.set_power(10);
+  // motor1.forward();
+  // wait_s(2);
+  // motor1.set_power(20);
+  // motor1.forward();
+  // wait_s(2);
+  // motor1.set_power(30);
+  // motor1.forward();
+  // wait_s(2);
+  // motor1.stop();
+  // wait_s(2);
+  // motor1.forward();
   
-  motor1.set_power(10);
-  motor1.forward();
-  wait_s(2);
-  motor1.set_power(20);
-  motor1.forward();
-  wait_s(2);
-  motor1.set_power(30);
-  motor1.forward();
-  wait_s(2);
-  motor1.stop();
-  wait_s(2);
-  motor1.forward();
   
+  // wait_s(4);
+  // motor2.forward();
+  // 
+  // motor2.set_power(10);
+  // motor2.forward();
+  // wait_s(2);
+  // motor2.set_power(20);
+  // motor2.forward();
+  // wait_s(2);
+  // motor2.set_power(30);
+  // motor2.forward();
+  // wait_s(2);
+  // motor2.stop();
+  // wait_s(2);
+  // motor2.forward();
   
-  wait_s(4);
-  motor2.forward();
-  
-  motor2.set_power(10);
-  motor2.forward();
-  wait_s(2);
-  motor2.set_power(20);
-  motor2.forward();
-  wait_s(2);
-  motor2.set_power(30);
-  motor2.forward();
-  wait_s(2);
-  motor2.stop();
-  wait_s(2);
-  motor2.forward();
-  
-	for(;;){
+  for(;;){
     leds_negate();
     wait_ms(300);
-	}
+  }
 }
