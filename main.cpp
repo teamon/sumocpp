@@ -23,7 +23,7 @@ Motor motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
 Queue queue;
 Move move;
 
-void turn_around() { queue.push(40, -40, 840); }
+void turn_around() { queue.push(40, -40, 600); }
 
 char escaping, grd;
 
@@ -65,56 +65,58 @@ int main() {
 
   leds_on();
   
-  
-  
-  queue.push(40, 40, 1000);
-  turn_around();
-  queue.push(40, 40, 1000);
-  
-  
-  // tests
-
-  
   int prognum = 1;
   led_send(prognum);
   for(;;){
     // ucieczka    
-    escape();
-    
+    // escape();
+    if(dist1_value() > 80) {
+      led1_on();
+      
+      motor1.set_power(-40);
+      motor2.set_power(-40);
+      wait_s(1);
+      
+      motor1.set_power(40);
+      motor2.set_power(-40);
+      wait_ms(500);
+    } else {
+      led1_off();
+      
+      motor1.set_power(40);
+      motor2.set_power(40);
+    }
     
     // wybor programu
-    if (switch2_pressed()) {
-      prognum *= 2;
-      if(prognum > 8) prognum = 1;
-      led_send(prognum);
-      wait_ms(100);
-    }
-    
-    if (switch1_pressed()) {
-      switch(prognum){
-        case 1:
-          queue.push(10, 10, 10000);
-          break;
-          
-        case 2:
-          queue.push(40, 40, 10000);
-          break;
-      }
-    }
+    // if (switch2_pressed()) {
+    //   prognum *= 2;
+    //   if(prognum > 8) prognum = 1;
+    //   led_send(prognum);
+    //   wait_ms(100);
+    // }
+    // 
+    // if (switch1_pressed()) {
+    //   switch(prognum){
+    //     case 1:
+    //       queue.push(10, 10, 10000);
+    //       break;
+    //       
+    //     case 2:
+    //       queue.push(40, 40, 10000);
+    //       break;
+    //   }
+    // }
 
     
-    if(queue.head){
-      move = queue.pull(10);
-      motor1.set_power(move.m1);
-      motor2.set_power(move.m2);
-      
-      led_send(MOTOR1_DIR_PORT);
-    } else {
-      leds_off();
-      led_send(MOTOR2_DIR_PORT);
-      motor1.set_power(0);
-      motor2.set_power(0);
-    }
+    // if(queue.head){
+    //   move = queue.pull(10);
+    //   motor1.set_power(move.m1);
+    //   motor2.set_power(move.m2);
+    // } else {
+    //   leds_off();
+    //   motor1.set_power(0);
+    //   motor2.set_power(0);
+    // }
     wait_ms(10);
   }
 }

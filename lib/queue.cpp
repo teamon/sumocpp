@@ -13,7 +13,7 @@ Queue::~Queue()
 
 void Queue::clear()
 {
-  while(head) pull();
+  while(head) pop();
 }
 
 void Queue::push(Move move)
@@ -35,7 +35,7 @@ void Queue::push(char m1, char m2, int time)
   push(m);
 }
 
-Move Queue::pull(int time)
+Move Queue::pop(int time)
 {
   if(head) 
   {
@@ -51,7 +51,7 @@ Move Queue::pull(int time)
   }
 }
 
-Move Queue::pull()
+Move Queue::pop()
 {
   if(head) 
   {

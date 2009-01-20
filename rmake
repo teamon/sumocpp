@@ -35,6 +35,8 @@ end
 if make_output and make_output.downcase =~ /error/
   puts "ERROR"
 elsif options[:program]
-  puts `avrdude #{options[:verify] ? '-V ' : ''}-c stk500v2 -P avrdoper -p atmega32 -U flash:w:#{name}.hex`
+  com = "avrdude #{options[:verify] ? '-V ' : ''}-c stk500v2 -P avrdoper -p atmega32 -U flash:w:#{name}.hex"
+  puts com
+  puts `#{com}`
 end
 

@@ -29,12 +29,12 @@ void dist_init()
 }
 
 
-inline unsigned char dist1_value() { return dist1; }
-inline unsigned char dist2_value() { return dist2; }
-inline unsigned char dist3_value() { return dist3; }
-inline unsigned char dist4_value() { return dist4; }
-inline unsigned char dist5_value() { return dist5; }
-inline unsigned char dist6_value() { return dist6; }
+unsigned char dist1_value() { return dist1; }
+unsigned char dist2_value() { return dist2; }
+unsigned char dist3_value() { return dist3; }
+unsigned char dist4_value() { return dist4; }
+unsigned char dist5_value() { return dist5; }
+unsigned char dist6_value() { return dist6; }
 
 // Procedura przerwania od przetwornika AC
 SIGNAL (SIG_ADC)

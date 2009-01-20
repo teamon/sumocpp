@@ -14,7 +14,10 @@ void Motor::stop(){
 }
 
 void Motor::set_power(char p){
+  // tak na szybko wrzucony max_power
   *REG = abs(p) * 10;
+  // if (abs(p) > 6) *REG = 60;
+  // else *REG = abs(p) * 10;
   
   // tu jest cos zjebane i nie moze byc tego drugiego warunku...
   // if(p > 0 && power <= 0) clr(*DIR_PORT, DIR_PIN); // do przodu

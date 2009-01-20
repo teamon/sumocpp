@@ -315,11 +315,11 @@ unsigned char ground4_detected();
 
 // lib/dist.cpp
 void dist_init();
-inline unsigned char dist1_value();
-inline unsigned char dist2_value();
-inline unsigned char dist3_value();
-inline unsigned char dist4_value();
-inline unsigned char dist5_value();
-inline unsigned char dist6_value();
+unsigned char dist1_value();
+unsigned char dist2_value();
+unsigned char dist3_value();
+unsigned char dist4_value();
+unsigned char dist5_value();
+unsigned char dist6_value();
 
 #endif
