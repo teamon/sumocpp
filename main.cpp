@@ -23,37 +23,37 @@ Motor motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
 Queue queue;
 Move move;
 
-void turn_around() { queue.push(40, -40, 600); }
+// void turn_around() { queue.push(40, -40, 600); }
 
-char escaping, grd;
+// char escaping, grd;
 
-void escape(){
-  grd = ground();
-  if(grd == 1 || escaping) return; 
-  
-  escaping = 1;
-  queue.clear();
-  
-  char power = 40;
-  char time = 3000;
-  
-  switch(grd){
-    case 6: // przod
-      queue.push(-power, -power, 3000);
-      break;
-    case 35: // tyl
-      queue.push(power, power, 3000);
-      break;
-    case 21: // prawo
-    case 10: // lewo  
-  
-    case 2: // przod lewy
-    case 3: // przod prawy
-    case 5: // tyl lewy
-    case 7: // tyl prawy
-    break;
-  }
-}
+// void escape(){
+//   grd = ground();
+//   if(grd == 1 || escaping) return; 
+//   
+//   escaping = 1;
+//   queue.clear();
+//   
+//   char power = 40;
+//   char time = 3000;
+//   
+//   switch(grd){
+//     case 6: // przod
+//       queue.push(-power, -power, 3000);
+//       break;
+//     case 35: // tyl
+//       queue.push(power, power, 3000);
+//       break;
+//     case 21: // prawo
+//     case 10: // lewo  
+//   
+//     case 2: // przod lewy
+//     case 3: // przod prawy
+//     case 5: // tyl lewy
+//     case 7: // tyl prawy
+//     break;
+//   }
+// }
 
 int main() {
   // init();
@@ -65,27 +65,40 @@ int main() {
 
   leds_on();
   
-  int prognum = 1;
-  led_send(prognum);
+  int x = 0;
+  // int prognum = 1;
+  // led_send(prognum);
   for(;;){
+        
+    if(switch1_pressed()){
+      // x = (x==0) ? 1 : 0;
+      leds_negate();
+      wait_ms(1000);
+      exit;
+    }
+    
+    if(!x){
+      led1_negate();
+    }
+    
     // ucieczka    
     // escape();
-    if(dist1_value() > 80) {
-      led1_on();
-      
-      motor1.set_power(-40);
-      motor2.set_power(-40);
-      wait_s(1);
-      
-      motor1.set_power(40);
-      motor2.set_power(-40);
-      wait_ms(500);
-    } else {
-      led1_off();
-      
-      motor1.set_power(40);
-      motor2.set_power(40);
-    }
+    // if(dist1_value() > 80) {
+    //   led1_on();
+    //   
+    //   motor1.set_power(-40);
+    //   motor2.set_power(-40);
+    //   wait_s(1);
+    //   
+    //   motor1.set_power(40);
+    //   motor2.set_power(-40);
+    //   wait_ms(500);
+    // } else {
+    //   led1_off();
+    //   
+    //   motor1.set_power(40);
+    //   motor2.set_power(40);
+    // }
     
     // wybor programu
     // if (switch2_pressed()) {
@@ -117,6 +130,6 @@ int main() {
     //   motor1.set_power(0);
     //   motor2.set_power(0);
     // }
-    wait_ms(10);
+    wait_ms(50);
   }
 }

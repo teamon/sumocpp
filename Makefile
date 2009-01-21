@@ -1,4 +1,4 @@
-PROGNAME=paz
+PROGNAME=main
 CC=avr-g++
 MMCU=atmega32
 OPT= -O2

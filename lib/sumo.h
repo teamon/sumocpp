@@ -1,50 +1,48 @@
 #ifndef SUMO_H_
 #define SUMO_H_
 
-/**
- * Opis wyprowadzeń procesora
- * 
- * PORTA
- *     0 - DIST1 - czujnik odległości
- *     1 - DIST2 - czujnik odległości
- *     2 - DIST3 - czujnik odległości
- *     3 - DIST4 - czujnik odległości
- *     4 - DIST5 - czujnik odległości
- *     5 - DIST6 - czujnik odległości
- *     6 - SERVO1 - wejście serwomechanizmu
- *     7 - SERVO2 - wejście serwomechanizmu
- * 
- * PORTB
- *     0 - GROUND1 - czujnik podłoża
- *     1 - GROUND2 - czujnik podłoża
- *     2 - GROUND3 - czujnik podłoża
- *     3 - GROUND4 - czujnik podłoża
- *     4 - LEDS - dioda świecąca
- *     5 - MOSI - używany do programowania
- *     6 - MISO - używany do programowania
- *     7 - SCK - używany do programowania
- * 
- * PORTC
- *     0 - LED1 - dioda świecąca
- *     1 - LED2 - dioda świecąca
- *     2 - LED3 - dioda świecąca
- *     3 - LED4 - dioda świecąca
- *     4 - LED5 - dioda świecąca
- *     5 - LED6 - dioda świecąca
- *     6 - LED7/SERVO4 - dioda świecąca/wejście serwomechanizmu
- *     7 - LED8/SERVO3 - dioda świecąca/wejście serwomechanizmu
- * 
- * PORTD
- *     0 - RXD - RS232
- *     1 - TXD - RS232
- *     2 - SWITCH1 - przycisk
- *     3 - SWITCH2 - przycisk
- *     4 - M1_PWM - start/stop silnika
- *     5 - M2_PWM - start/stop silnika
- *     6 - M1_DIR - kierunek obrotów silnika
- *     7 - M2_DIR - kierunek obrotów silnika
- * 
- */
+// Opis wyprowadzeń procesora
+// 
+// PORTA
+//     0 - DIST1 - czujnik odległości
+//     1 - DIST2 - czujnik odległości
+//     2 - DIST3 - czujnik odległości
+//     3 - DIST4 - czujnik odległości
+//     4 - DIST5 - czujnik odległości
+//     5 - DIST6 - czujnik odległości
+//     6 - SERVO1 - wejście serwomechanizmu
+//     7 - SERVO2 - wejście serwomechanizmu
+// 
+// PORTB
+//     0 - GROUND1 - czujnik podłoża
+//     1 - GROUND2 - czujnik podłoża
+//     2 - GROUND3 - czujnik podłoża
+//     3 - GROUND4 - czujnik podłoża
+//     4 - LEDS - dioda świecąca
+//     5 - MOSI - używany do programowania
+//     6 - MISO - używany do programowania
+//     7 - SCK - używany do programowania
+// 
+// PORTC
+//     0 - LED1 - dioda świecąca
+//     1 - LED2 - dioda świecąca
+//     2 - LED3 - dioda świecąca
+//     3 - LED4 - dioda świecąca
+//     4 - LED5 - dioda świecąca
+//     5 - LED6 - dioda świecąca
+//     6 - LED7/SERVO4 - dioda świecąca/wejście serwomechanizmu
+//     7 - LED8/SERVO3 - dioda świecąca/wejście serwomechanizmu
+// 
+// PORTD
+//     0 - RXD - RS232
+//     1 - TXD - RS232
+//     2 - SWITCH1 - przycisk
+//     3 - SWITCH2 - przycisk
+//     4 - M1_PWM - start/stop silnika
+//     5 - M2_PWM - start/stop silnika
+//     6 - M1_DIR - kierunek obrotów silnika
+//     7 - M2_DIR - kierunek obrotów silnika
+// 
 
 
 // Częstotliwość kwarcu
@@ -91,102 +89,62 @@
 // Rejestr kierunku portu serwomechanozmu 1
 #define SERVO1_DDR DDRA
 
-/**
- * Linia portu serwomechanozmu 1
- */
+// Linia portu serwomechanozmu 1
 #define SERVO1_PIN 6
 
-/** 
- * Negacja kierunku ruchu serwomechanizmu 1
- * 0 - brak negacji
- * 1 - negacja
- */
-#define SERVO1_DIR_NEGATE 0
-
-
-/**
- * Port serwomechanozmu 2
- */
+// Port serwomechanozmu 2
 #define SERVO2_PORT PORTA
 
-/**
- * Rejestr kierunku portu serwomechanozmu 2
- */
+// Rejestr kierunku portu serwomechanozmu 2
 #define SERVO2_DDR DDRA
 
-/**
- * Linia portu serwomechanozmu 1
- */
+// Linia portu serwomechanozmu 1
 #define SERVO2_PIN 7
 
-/** 
- * Negacja kierunku ruchu serwomechanizmu 2
- * 0 - brak negacji
- * 1 - negacja
- */
+// Negacja kierunku ruchu serwomechanizmu 2
+// 0 - brak negacji
+// 1 - negacja
 #define SERVO2_DIR_NEGATE 0
 
 
-/**
- * Port serwomechanozmu 3
- */
+// Port serwomechanozmu 3
 #define SERVO3_PORT PORTC
 
-/**
- * Rejestr kierunku portu serwomechanozmu 3
- */
+// Rejestr kierunku portu serwomechanozmu 3
 #define SERVO3_DDR DDRC
 
-/**
- * Linia portu serwomechanozmu 3
- */
+// Linia portu serwomechanozmu 3
 #define SERVO3_PIN 6
 
-/** 
- * Negacja kierunku ruchu serwomechanizmu 3
- * 0 - brak negacji
- * 1 - negacja
- */
+// Negacja kierunku ruchu serwomechanizmu 3
+// 0 - brak negacji
+// 1 - negacja
 #define SERVO3_DIR_NEGATE 0
 
 
-/**
- * Port serwomechanozmu 4
- */
+// Port serwomechanozmu 4
 #define SERVO4_PORT PORTC
 
-/**
- * Rejestr kierunku portu serwomechanozmu 4
- */
+// Rejestr kierunku portu serwomechanozmu 4
 #define SERVO4_DDR DDRC
 
-/**
- * Linia portu serwomechanozmu 4
- */
+// Linia portu serwomechanozmu 4
 #define SERVO4_PIN 7
 
-/** 
- * Negacja kierunku ruchu serwomechanizmu 4
- * 0 - brak negacji
- * 1 - negacja
- */
+// Negacja kierunku ruchu serwomechanizmu 4
+// 0 - brak negacji
+// 1 - negacja
 #define SERVO4_DIR_NEGATE 0
 
 
-/**
- * Port czujników odległości
- * (musi być port z wejściami analogowymi)
- */
+// Port czujników odległości
+// (musi być port z wejściami analogowymi)
 #define DIST_POTR PORTA
 
-/**
- * Rejestr kierunku portu czujników odległości
- */
+// Rejestr kierunku portu czujników odległości
 #define DIST_DDR DDRA
 
-/**
- * Linie czujników odległości
- */
+// Linie czujników odległości
 #define DIST1_PIN 0
 #define DIST2_PIN 1
 #define DIST3_PIN 2
@@ -323,3 +281,4 @@ unsigned char dist5_value();
 unsigned char dist6_value();
 
 #endif
+

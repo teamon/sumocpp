@@ -3,16 +3,12 @@
 
 // Ustawia bit w bajcie
 #define setb(byte,bit) byte |= (1 << bit)
-
 // Zeruje bit w bajcie
 #define clr(byte,bit) byte &= ~(1 << bit)
-
 // Neguje bit w bajcie
 #define cpl(byte,bit) byte ^= (1 << bit)
-
 // Zapis do pamięci eeprom
 #define eeprom_write(adr,dane) eeprom_write_byte ((uint8_t*)adr, dane)
-
 // Odczyt z pamięci eeprom
 #define eeprom_read(adr) eeprom_read_byte ((uint8_t*)adr)
 
@@ -37,7 +33,6 @@
 #define led7_off() setb(LED_PORT,LED7_PIN)
 #define led8_off() setb(LED_PORT,LED8_PIN)
 #define leds_off() setb(LEDS_PORT,LEDS_PIN)
-
 
 // Zmiana stanu poszczególnych diod
 #define led1_negate() cpl(LED_PORT,LED1_PIN)
