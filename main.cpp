@@ -30,14 +30,23 @@ void init(){
   switch_init();
   ground_init();
   dist_init();
+  servo_init();
 
   motor1 = Motor(&OCR1A, &MOTOR1_DIR_PORT, MOTOR1_DIR_PIN);
   motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
 }
 
+void klapy(){
+  // servo1_forward();
+  // servo2_forward();
+  // wait_ms(100);
+}
+
 int main() {
   init();
   leds_on();
+  
+  wait_s(5); // regulaminowy czas
 
   for(;;){
         
@@ -45,8 +54,6 @@ int main() {
       leds_negate();
     }
     
-
-
     if(queue.head){
       move = queue.pop(ITIME);
       motor1.set_power(move.m1);

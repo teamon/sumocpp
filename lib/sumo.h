@@ -249,5 +249,16 @@ unsigned char dist4_value();
 unsigned char dist5_value();
 unsigned char dist6_value();
 
+// lib/servo.cpp
+void servo_init();
+void servo1_forward();
+void servo2_forward();
+void servo1_backward();
+void servo2_backward();
+void servo1_stop();
+void servo2_stop();
+void servo1_calibrate();
+void servo2_calibrate();
+
 #endif
 
