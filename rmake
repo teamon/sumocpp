@@ -11,6 +11,10 @@ OptionParser.new do |o|
   o.on("-V", "Do not verify") {|v| options[:verify] = v}
 end.parse!
 
+
+options[:program] = options[:make] = options[:verify] = true if options.empty?
+
+
 name = ARGV.first
 
 if options[:remove]

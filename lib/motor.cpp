@@ -45,5 +45,6 @@ void motor_init() {
   
   clr(MOTOR1_DIR_PORT, MOTOR1_DIR_PIN);
   clr(MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
-
+  
 }
+

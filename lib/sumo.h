@@ -88,62 +88,36 @@
 #define SERVO1_PORT PORTA
 // Rejestr kierunku portu serwomechanozmu 1
 #define SERVO1_DDR DDRA
-
 // Linia portu serwomechanozmu 1
 #define SERVO1_PIN 6
 
 // Port serwomechanozmu 2
 #define SERVO2_PORT PORTA
-
 // Rejestr kierunku portu serwomechanozmu 2
 #define SERVO2_DDR DDRA
-
 // Linia portu serwomechanozmu 1
 #define SERVO2_PIN 7
 
-// Negacja kierunku ruchu serwomechanizmu 2
-// 0 - brak negacji
-// 1 - negacja
-#define SERVO2_DIR_NEGATE 0
-
-
 // Port serwomechanozmu 3
 #define SERVO3_PORT PORTC
-
 // Rejestr kierunku portu serwomechanozmu 3
 #define SERVO3_DDR DDRC
-
 // Linia portu serwomechanozmu 3
 #define SERVO3_PIN 6
 
-// Negacja kierunku ruchu serwomechanizmu 3
-// 0 - brak negacji
-// 1 - negacja
-#define SERVO3_DIR_NEGATE 0
-
-
 // Port serwomechanozmu 4
 #define SERVO4_PORT PORTC
-
 // Rejestr kierunku portu serwomechanozmu 4
 #define SERVO4_DDR DDRC
-
 // Linia portu serwomechanozmu 4
 #define SERVO4_PIN 7
-
-// Negacja kierunku ruchu serwomechanizmu 4
-// 0 - brak negacji
-// 1 - negacja
-#define SERVO4_DIR_NEGATE 0
 
 
 // Port czujników odległości
 // (musi być port z wejściami analogowymi)
 #define DIST_POTR PORTA
-
 // Rejestr kierunku portu czujników odległości
 #define DIST_DDR DDRA
-
 // Linie czujników odległości
 #define DIST1_PIN 0
 #define DIST2_PIN 1
@@ -151,7 +125,6 @@
 #define DIST4_PIN 3
 #define DIST5_PIN 4
 #define DIST6_PIN 5
-
 
 
 // Port czujników podłoża
@@ -209,6 +182,22 @@
 #define LED7_PIN 6
 #define LED8_PIN 7
 
+
+// Wartość preskalera timera0
+#define T0_PRESCALER 256
+// Konfiguracja timera0
+#define T0_CONF _BV(CS02)
+// Wartość początkowa dla timera0 używanego do sterowania serwomechanizmami
+#define TIMER0_BEGIN_VALUE (unsigned char) (255-((0.0005)*(F_CPU/T0_PRESCALER)))
+// Wartość preskalera dla PWM
+// 0x01 - preskaler=1
+// 0x02 - preskaler=8
+// 0x03 - preskaler=64
+// 0x04 - preskaler=256
+// 0x05 - preskaler=1024
+#define PWM_PRESCALLER_CONFIG 0x02
+
+
 #define DEBUG 1
 
 
@@ -223,26 +212,6 @@
 #include <util/delay.h>
 #include <ctype.h>
 #include <stdlib.h>
-
-// Stałe obliczane
-
-// Wartość preskalera timera0
-#define T0_PRESCALER 256
-
-// Konfiguracja timera0
-#define T0_CONF _BV(CS02)
-
-// Wartość początkowa dla timera0 
-// używanego do sterowania serwomechanizmami
-#define TIMER0_BEGIN_VALUE (unsigned char) (255-((0.0005)*(F_CPU/T0_PRESCALER)))
-
-// Wartość preskalera dla PWM
-// 0x01 - preskaler=1
-// 0x02 - preskaler=8
-// 0x03 - preskaler=64
-// 0x04 - preskaler=256
-// 0x05 - preskaler=1024
-#define PWM_PRESCALLER_CONFIG 0x02
 
 // lib/led.cpp
 void led_init();
