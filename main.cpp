@@ -3,13 +3,13 @@
   D - distance
   M - motor
   ----------------------
-  | G-2  D-1  D-2  G-3 |
+  | G2  D1  D2  D3  G3 |
   |                    |
   |                    |
-  | M-1            M-2 |
+  | M1              M2 |
   |                    |
   |                    |
-  | G-5     D-3    G-7 |
+  | G5  D4  D5  D6  G7 |
   ----------------------
 */
 
@@ -18,11 +18,29 @@
 #include "lib/queue.h"
 
 #define ITIME 50
+#define MAX_POWER 50 // tak zeby nie zjarac serw :p
+#define DEBUG 1
 
 Queue queue;
 Move move;
 Motor motor1;
 Motor motor2;
+
+// debug itp
+
+unsigned char progressVal = 1;
+void progress(){  
+  led_send(progressVal);
+  if (progressVal*2 > 63) progressVal = 1;
+  else progressVal *= 2;
+}
+
+void debug(){
+  progress();
+  
+}
+
+
 
 void init(){
   led_init();
@@ -31,15 +49,10 @@ void init(){
   ground_init();
   dist_init();
   servo_init();
+  if(DEBUG) usart_init();
 
-  motor1 = Motor(&OCR1A, &MOTOR1_DIR_PORT, MOTOR1_DIR_PIN);
-  motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN);
-}
-
-void klapy(){
-  // servo1_forward();
-  // servo2_forward();
-  // wait_ms(100);
+  motor1 = Motor(&OCR1A, &MOTOR1_DIR_PORT, MOTOR1_DIR_PIN, MAX_POWER);
+  motor2 = Motor(&OCR1B, &MOTOR2_DIR_PORT, MOTOR2_DIR_PIN, MAX_POWER);
 }
 
 int main() {
@@ -49,6 +62,7 @@ int main() {
   wait_s(5); // regulaminowy czas
 
   for(;;){
+    if(DEBUG) debug();
         
     if(switch1_pressed()){
       leds_negate();
@@ -60,10 +74,11 @@ int main() {
       motor2.set_power(move.m2);
     } else {
       leds_off();
-      // zatrzymanie | szukanie
+      // szukanie
       motor1.set_power(0);
       motor2.set_power(0);
     }
     wait_ms(ITIME);
   }
 }
+

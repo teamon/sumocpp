@@ -19,11 +19,11 @@ void Queue::clear()
 void Queue::push(Move move)
 {
   Item* curr = (Item*) malloc(sizeof(Item));
-	if(head == NULL) head = curr;
-	else tail->next = curr;
-	curr->move = move;
-	curr->next = NULL;
-	tail = curr;
+  if(head == NULL) head = curr;
+  else tail->next = curr;
+  curr->move = move;
+  curr->next = NULL;
+  tail = curr;
 }
 
 void Queue::push(char m1, char m2, int time)

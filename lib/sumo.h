@@ -50,11 +50,6 @@
 // Prędkość transmisji po RSie
 #define USART_SPEED 9600L
 
-// Opóźnienie pomiędzy przełączaniem kierunków ruchu silników
-// podawane w ms
-// Uwaga: musi być większe od 0
-#define MOTOR_DELAY 2
-
 
 // Port wyjścia PWM silnika 1
 #define MOTOR1_PWM_PORT PORTD
@@ -182,7 +177,6 @@
 #define LED7_PIN 6
 #define LED8_PIN 7
 
-
 // Wartość preskalera timera0
 #define T0_PRESCALER 256
 // Konfiguracja timera0
@@ -196,9 +190,6 @@
 // 0x04 - preskaler=256
 // 0x05 - preskaler=1024
 #define PWM_PRESCALLER_CONFIG 0x02
-
-
-#define DEBUG 1
 
 
 #include "macro.h"
@@ -260,5 +251,12 @@ void servo2_stop();
 void servo1_calibrate();
 void servo2_calibrate();
 
-#endif
+// lib/usart.cpp
+void usart_init();
+void usart_write_byte(unsigned char byte);
+void usart_write_string(char *string);
+void usart_write_string_from_progmem(const char *string);
+void usart_write_number(long number);
+unsigned char usart_read_byte();
 
+#endif
